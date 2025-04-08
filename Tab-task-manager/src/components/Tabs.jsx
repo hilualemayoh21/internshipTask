@@ -17,7 +17,7 @@ function Tabs() {
     const storeData = JSON.parse(localStorage.getItem('mytab'));
     if (storeData && storeData.length > 0) {
       setTabs(storeData);
-      setActiveTab(storeData[0].id);
+      setActiveTab(1);
     }
   }, []);
    
