@@ -128,10 +128,10 @@ function Tabs() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#060C24] via-[#08143E] to-[#08143E] p-7">
-      <div className="bg-white max-w-5xl p-14 mx-auto rounded-xl shadow-md relative">
+      <div className="bg-white max-w-5xl p-8 md:p-14 mx-auto rounded-xl shadow-md relative">
         <div className="text-gray-600 flex border-b-2 border-gray-400">
           {tabs.map((tab) => (
-            <div className="flex items-center px-4" key={tab.id}>
+            <div className="flex items-center px-2 md:px-4" key={tab.id}>
               <button
                 className={`p-2 ${activeTab === tab.id ? 'border-b-2 border-[#08143E] text-blue-500 ' : ''} cursor-pointer `}
                 onClick={() => setActiveTab(tab.id)}
@@ -140,7 +140,7 @@ function Tabs() {
               </button>
             </div>
           ))}
-          <button onClick={() => setShowInput(!showInput)} className="cursor-pointer ml-auto">
+          <button onClick={() => setShowInput(!showInput)} className="cursor-pointer ml-auto hover:text-blue-300">
             +Newtab
           </button>
         </div>
@@ -172,11 +172,11 @@ function Tabs() {
               <button onClick={addingTask} className='hover:text-gray-500 cursor-pointer'>Add</button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-3 mx-auto">
               {activeTabData.task &&
                 activeTabData.task.length > 0 &&
                 activeTabData.task.map((task) => (
-                  <div key={task?.id} className="bg-[#201335] text-white px-12 py-4 rounded-xl shadow-lg mx-auto">
+                  <div key={task?.id} className="bg-[#201335] text-white w-full px-2 py-4 sm:py-8 sm:px-10 md:px-12 md:py-4 rounded-xl shadow-lg md:mx-auto md:mb-0 mb-5">
                     {task?.id === editIndex ? (
                       <div className="flex gap-2 ">
                         <input
@@ -191,14 +191,14 @@ function Tabs() {
                       </div>
                     ) : (
                       <>
-                        <div  className={`${task.status === "completed" ? "text-gray-400":""} flex gap-4`}>
-                            <p className="text-center">{task?.text}</p>
-                        <p className="text-center">{task?.status}</p>
+                        <div  className={`${task.status === "completed" ? "text-gray-400":""} flex gap-4  md:justify-start justify-center`}>
+                            <p className="text-center md:text-lg text-sm">{task?.text}</p>
+                        <p className="text-center  md:text-lg text-sm">{task?.status}</p>
                         </div>
                         
                         <div className="flex gap-3 mt-4 mx-auto">
                           {features.map((feature, index) => (
-                            <button key={index} className="cursor-pointer" onClick={() => handleTaskFunctionality(task.id, feature)}>
+                            <button key={index} className="cursor-pointer md:text-lg text-sm" onClick={() => handleTaskFunctionality(task.id, feature)}>
                               {feature}
                             </button>
                           ))}
@@ -208,7 +208,7 @@ function Tabs() {
                   </div>
                 ))}
             </div>
-            <div className='absolute bottom-3 right-7   bg-gray-400 px-3 py-1 rounded-lg hover:bg-gray-300 '>
+            <div className='absolute flex justify-center bottom-0  sm:bottom-4  my-3 md:bottom-3 right-7   bg-gray-400 px-3 py-1 rounded-lg hover:bg-gray-300 '>
             <button className='cursor-pointer' onClick={()=>handleDelete(activeTabData.id)}>RemoveTab</button>
         </div>
         {deletedTab?.task.length > 0 && showToast &&
