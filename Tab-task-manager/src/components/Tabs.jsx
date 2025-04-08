@@ -172,7 +172,7 @@ function Tabs() {
               <button onClick={addingTask} className='hover:text-gray-500 cursor-pointer'>Add</button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-3">
               {activeTabData.task &&
                 activeTabData.task.length > 0 &&
                 activeTabData.task.map((task) => (
