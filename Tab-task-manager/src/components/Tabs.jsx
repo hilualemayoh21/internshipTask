@@ -25,11 +25,11 @@ function Tabs() {
     if (!tabName.trim()) return;
     const newTab = { id: Date.now(), name: tabName, task: [] };
     const updatedTabs = [...tabs, newTab];
-    setTabs(updatedTabs);
     setTabName('');
     setShowInput(false);
     setActiveTab(newTab.id);
-    localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+//      setTabs(updatedTabs);
+//  localStorage.setItem('mytab', JSON.stringify(updatedTabs));
   };
 
   const addingTask = () => {
@@ -43,12 +43,19 @@ function Tabs() {
       }
       return tab;
     });
-    setTabs(updatedTabs);
-    localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+    // setTabs(updatedTabs);
+    // localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+     setUpdatedTabData(updatedTabs);
     setTaskInput('');
   };
 
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
+
+  const setUpdatedTabData = (updated)=>{
+    setTabs(updated);
+    localStorage.setItem("mytab" , JSON.stringify(updated));
+
+  }
 
   const handleTaskFunctionality = (taskId, feature) => {
     if (!activeTabData) return; // Ensure activeTabData is not null
@@ -63,9 +70,11 @@ function Tabs() {
         }
         return tab;
       });
-      setTabs(updatedTab);
-      localStorage.setItem('mytab', JSON.stringify(updatedTab));
-    } else if (feature === 'Delete') {
+      // setTabs(updatedTab);
+      // localStorage.setItem('mytab', JSON.stringify(updatedTab));
+       setUpdatedTabData(updatedTab);
+    }
+     else if (feature === 'Delete') {
       const updatedTab = tabs.map((tab) => {
         if (tab.id === activeTab) {
           const updatedTask = tab.task.filter((task) => task.id !== taskId);
@@ -73,9 +82,11 @@ function Tabs() {
         }
         return tab;
       });
-      setTabs(updatedTab);
-      localStorage.setItem('mytab', JSON.stringify(updatedTab));
-    } else if (feature === 'Update') {
+      setUpdatedTabData(updatedTab);
+      // setTabs(updatedTab);
+      // localStorage.setItem('mytab', JSON.stringify(updatedTab));
+    } 
+    else if (feature === 'Update') {
       setEditIndex(taskId);
       const editableTask = activeTabData.task.find((task) => task.id === taskId);
       if (editableTask) {
@@ -94,8 +105,9 @@ function Tabs() {
       }
       return tab;
     });
-    setTabs(updatedTabs);
-    localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+    // setTabs(updatedTabs);
+    // localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+     setUpdatedTabData(updatedTabs);
     setEditedText('');
     setEditIndex(null);
   };
@@ -105,8 +117,9 @@ function Tabs() {
    if(currentTab!== 1) {
     setShowToast(true);
     setDeletedTab(DeletedTab);
-     setTabs(updateTab);
-     localStorage.setItem("mytab" , JSON.stringify(updateTab));
+    //  setTabs(updateTab);
+    //  localStorage.setItem("mytab" , JSON.stringify(updateTab));
+     setUpdatedTabData(updatedTab);
     }
     if(currentTab === activeTab && updateTab.length > 0){
         setActiveTab(updateTab[0].id); }
@@ -119,8 +132,9 @@ function Tabs() {
             if(deletedTab.task && deletedTab.task.length > 0){
                 const restoreDeleted = [...tabs , deletedTab];
                 setActiveTab(deletedTab.id);
-                setTabs(restoreDeleted);
-                localStorage.setItem("mytab" , JSON.stringify(restoreDeleted));
+                // setTabs(restoreDeleted);
+                // localStorage.setItem("mytab" , JSON.stringify(restoreDeleted));
+                 setUpdatedTabData(restoreDeleted);
                 setShowToast(false);
                 setDeletedTab(null);
             }
