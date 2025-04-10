@@ -20,6 +20,11 @@ function Tabs() {
       setActiveTab(1);
     }
   }, []);
+  const setUpdatedTabData = (updated)=>{
+    setTabs(updated);
+    localStorage.setItem("mytab" , JSON.stringify(updated));
+
+  }
    
   const addingTab = () => {
     if (!tabName.trim()) return;
@@ -30,6 +35,7 @@ function Tabs() {
     setActiveTab(newTab.id);
 //      setTabs(updatedTabs);
 //  localStorage.setItem('mytab', JSON.stringify(updatedTabs));
+ setUpdatedTabData(updatedTabs);
   };
 
   const addingTask = () => {
@@ -51,11 +57,7 @@ function Tabs() {
 
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
-  const setUpdatedTabData = (updated)=>{
-    setTabs(updated);
-    localStorage.setItem("mytab" , JSON.stringify(updated));
-
-  }
+  
 
   const handleTaskFunctionality = (taskId, feature) => {
     if (!activeTabData) return; // Ensure activeTabData is not null
@@ -119,7 +121,7 @@ function Tabs() {
     setDeletedTab(DeletedTab);
     //  setTabs(updateTab);
     //  localStorage.setItem("mytab" , JSON.stringify(updateTab));
-     setUpdatedTabData(updatedTab);
+     setUpdatedTabData(updateTab);
     }
     if(currentTab === activeTab && updateTab.length > 0){
         setActiveTab(updateTab[0].id); }
@@ -176,7 +178,7 @@ function Tabs() {
         )}
         {activeTabData && (
           <div className="flex flex-col gap-6">
-            <div className="flex justify-center items-center my-6 gap-3 rounded-lg">
+            <div className="flex justify-end items-center my-6 gap-3 rounded-lg">
               <input
                 type="text"
                 value={taskInput}
@@ -190,14 +192,14 @@ function Tabs() {
               {activeTabData.task &&
                 activeTabData.task.length > 0 &&
                 activeTabData.task.map((task) => (
-                  <div key={task?.id} className="bg-[#201335] text-white w-full px-2 py-4 sm:py-8 sm:px-10 md:px-12 md:py-4 rounded-xl shadow-lg md:mx-auto md:mb-0 mb-5">
+                  <div key={task?.id} className={`${task?.id === editIndex ? "rounded-none":""}bg-[#201335] text-white  w-full px-2 py-4 sm:py-8 sm:px-10 md:px-12 md:py-4 rounded-xl shadow-lg md:mx-auto md:mb-0 mb-5`}>
                     {task?.id === editIndex ? (
-                      <div className="flex gap-2 ">
+                      <div className="flex gap-2 justify-start w-full -translate-x-7 text-black">
                         <input
                           type="text"
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
-                          className="border-1 border-gray-400 p-2 rounded-md"
+                          className="border-1 border-gray-400 px-2 rounded-md"
                         />
                         <button onClick={saveEditedTask} className="bg-green-500 text-white px-2 py-1 rounded-md">
                           Save
@@ -226,7 +228,7 @@ function Tabs() {
             <button className='cursor-pointer' onClick={()=>handleDelete(activeTabData.id)}>RemoveTab</button>
         </div>
         {deletedTab?.task.length > 0 && showToast &&
-        <div>
+        <div className="fixed overflow-none z-50">
    <span className="text-gray-400 text-lg">Tab {deletedTab?.name} deleted</span>
        <button onClick={undoDeleted} className="text-blue-500 text-lg font-bold cursor-pointer">undo</button>    
         </div>}
