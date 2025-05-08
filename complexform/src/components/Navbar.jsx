@@ -17,7 +17,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import edulogo from '../assets/edulogo.jpg';
+import logo from '../assets/logo.jpg';
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -164,7 +165,7 @@ const Navbar = () => {
         <Toolbar sx={{maxWidth:"1200px",   mx:"auto" , display:"flex" , justifyContent:"space-b:etween", alignItems:"center",gap:28}}>
            
           <Box sx={{display:"flex", alignItems:"center",justifyContent:"start"} }>
-          <Box component="img" src={edulogo} alt="logo" sx={{height:40 ,mr:4}}/></Box>
+          <Box component="img" src={logo} alt="logo" sx={{width:40,height:40 ,mr:4 , borderRadius:"100%"}}/></Box>
           <Box sx={{ display:"flex" ,alignItems:"center" , gap:2}} />
           <Box sx={{ display: { xs: 'none', md: 'inline-flex' } ,alignItems:"center" ,gap:2}}>
             <Button sx={{color:activeState === "home" ? "#813013":"#2C66B8"}} onClick={()=>setActiveState("home")}>Home</Button>

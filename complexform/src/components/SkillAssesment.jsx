@@ -18,6 +18,7 @@ const topics = [
   "Interaction Design",
   "Design Thinking",
   "Product Design",
+  "Project Management",
   "AccessibilityDesign",
   "Motion Design",
   "Mobile App Design",

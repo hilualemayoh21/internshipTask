@@ -62,6 +62,7 @@ function AccountSetup({formik}) {
       formik.touched.sponsorshipCode &&
       Boolean(formik.errors.sponsorshipCode)
     }
+    sx={{mt:2}}
     helperText={
       formik.touched.sponsorshipCode && formik.errors.sponsorshipCode ? formik.errors.sponsorshipCode :""
     } />)}</Box>

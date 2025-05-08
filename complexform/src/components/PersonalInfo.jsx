@@ -68,7 +68,7 @@ helperText={formik.touched.phoneNumber && formik.errors.phoneNumber ?  formik.er
         <Typography variant="body1" sx={{my:1}}>Profile Picture Upload</Typography>
         <Box {...getRootProps()} sx={style}>
             <input {...getInputProps()} />
-            {formik.values.profilePreview && <img src={formik.values.profilePreview}  style={{  marginTop: 16, width:"70%",height:"100%", borderRadius: 8 ,objectFit:"cover" }}/>}
+            {formik.values.profilePreview && <img src={formik.values.profilePreview}  style={{  marginTop: 16, width:"70%",height:"100%", borderRadius: 8 ,objectFit:"fill" }}/>}
         </Box>
        
    {formik.touched.profilePicture && formik.errors.profilePicture && (
