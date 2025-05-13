@@ -1,7 +1,7 @@
 import React from 'react'
 import {Typography , Box , Grid , Button} from "@mui/material"
 import howitwork from "../assets/howitwork.png" 
-
+import ImageWithPlaceholder from './imagewithplaceholder/ImageWithPlaceholder';
 function HowWorks() {
     const boxTextStyle ={
         '&:hover':{backgroundColor:"#2C66B8" ,  color:"white"} , display:"flex" , flexDirection:"column" ,borderRadius:2 ,px:2,
@@ -30,7 +30,7 @@ function HowWorks() {
               <Typography variant="body2">compare your results with your peers' with advanced analytics</Typography>
              </Box>
             </Box>
-      <Box sx={{flex:1 ,  maxWidth:{xs:"540px",md:"600px"}, position:"relative" }}><img src={howitwork} style={{width:"100%" ,heigth:"auto" , display:"block" ,   borderRadius:4}}/>
+      <Box sx={{flex:1 ,  maxWidth:{xs:"540px",md:"600px"}, position:"relative" }}><ImageWithPlaceholder blurhash="LSI#os?b9Fxu_4R-aJx]MwaeRPoz" src={howitwork} width="100%" heigth="auto" style={{display:"block" ,   borderRadius:4}}/>
       <Button sx={{position:"absolute" ,bottom:"10%" , left:"40%" , height:"40px", width:"150px" , transform:"" }} variant="contained" size="">Start Now </Button></Box>
         </Box>
     </Box>

@@ -15,7 +15,7 @@ import {
 const topics = [
   "UI/UX Design",
   "Graphic Design",
-  "Interaction Design",
+  "Interaction Design", 
   "Design Thinking",
   "Product Design",
   "Project Management",
@@ -45,14 +45,14 @@ function SkillAssessment({ formik }) {
       sx={{
         my: 2,
         px: 2,
-        width: '100%',
-       // center the box
+        width: '500px', // Fixed width instead of 100%
         display: 'flex',
         flexDirection: 'column',
-        gap: 2, // adds spacing between fields
+        gap: 2,
+        margin: '0 auto',
       }}
     >
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{my:2}}>
         Skill Assessment
       </Typography>
 
@@ -67,7 +67,15 @@ function SkillAssessment({ formik }) {
         onBlur={formik.handleBlur}
         error={formik.touched.skillLevel && Boolean(formik.errors.skillLevel)}
         helperText={formik.touched.skillLevel && formik.errors.skillLevel}
-        sx={{ width: '100%' , flex:1 }}
+        sx={{ 
+          width: '500px',
+          '& .MuiInputBase-root': {
+            width: '500px',
+          },
+          '& .MuiSelect-select': {
+            width: '500px',
+          }
+        }}
       >
         {levels.map((level) => (
           <MenuItem key={level} value={level}>
@@ -78,8 +86,16 @@ function SkillAssessment({ formik }) {
 
       {/* Interested Topics Multi-select */}
       <FormControl
-        fullWidth
         error={formik.touched.interestedTopics && Boolean(formik.errors.interestedTopics)}
+        sx={{
+          width: '500px',
+          '& .MuiInputBase-root': {
+            width: '500px',
+          },
+          '& .MuiSelect-select': {
+            width: '500px',
+          }
+        }}
       >
         <InputLabel id="topics-label">Interested Topics</InputLabel>
         <Select
@@ -119,6 +135,12 @@ function SkillAssessment({ formik }) {
           onBlur={formik.handleBlur}
           error={formik.touched.portfolioLink && Boolean(formik.errors.portfolioLink)}
           helperText={formik.touched.portfolioLink && formik.errors.portfolioLink}
+          sx={{
+            width: '500px',
+            '& .MuiInputBase-root': {
+              width: '500px',
+            }
+          }}
         />
       )}
 
@@ -133,6 +155,12 @@ function SkillAssessment({ formik }) {
           onBlur={formik.handleBlur}
           error={formik.touched.mentorshipArea && Boolean(formik.errors.mentorshipArea)}
           helperText={formik.touched.mentorshipArea && formik.errors.mentorshipArea}
+          sx={{
+            width: '500px',
+            '& .MuiInputBase-root': {
+              width: '500px',
+            }
+          }}
         />
       )}
     </Box>

@@ -7,12 +7,12 @@ import AccountSetup from '../AccountSetup.jsx'
 import  useformikForm from "../useformik/Useformik.jsx"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-function Stepperfom({open ,handleClose}) {
+import ImageWithPlaceholder from '../imagewithplaceholder/ImageWithPlaceholder.jsx'
+function Stepperfom({open ,handleClose , onFinalSubmit}) {
     const [activeStep , setActiveStep] = useState(0);
     const handlePreviouse = ()=>setActiveStep(prevStep=> prevStep - 1);
     const steps =["Personal Info" , "Skill Assessment" , "Schedule & Availability" , "Account Setup"];
-    const formik =  useformikForm({onSubmitSuccess:handleClose});
+    const formik =  useformikForm({onSubmitSuccess: onFinalSubmit });
     const handleNext = async ()=>{
     const stepFields ={
       0:[ "name","email","phoneNumber" ,"profilePicture"],
@@ -79,13 +79,11 @@ function Stepperfom({open ,handleClose}) {
   {getStepperContent(activeStep)}
   <Box sx={{display:"flex" ,gap:4 , my:2}}>
     <Button variant="outlined" disabled={activeStep === 0 ? true : false} onClick={handlePreviouse}>Back</Button>
-     <Button variant="outlined" onClick={ handleNext} >{activeStep === steps.length - 1 ? "Submit" : "Next"}</Button>
+     <Button type="submit" variant="outlined" onClick={ handleNext} >{activeStep === steps.length - 1 ? "Submit" : "Next"}</Button>
   </Box>
     </Grid>
     </Grid>
       </Box>
-       
-  
     </Modal>
    
   )

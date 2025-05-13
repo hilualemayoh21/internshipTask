@@ -15,24 +15,26 @@ export default function TaskDashboared() {
     setSavedTasks(storedTask);
    },[]);
  const handleSaveTasks = ()=>{
-    if(task.title && task.description){
+    if(task.title.trim() && task.description.trim()){
         const newTask = [...savedTasks , task];
         setSavedTasks(newTask);
         localStorage.setItem("tasks" , JSON.stringify(newTask));
         setTask({title:"" , description:"" , status:"pending"});
     }
-    
+   else{
+    alert("please enter  the input field ");
+   } 
  }
  const listOfTasks = {savedTasks , setSavedTasks};
   return (
     <div className="bg-gradient-to-b from-[#060C24] via-[#08143E] to-[#08143E] min-h-screen pb-5">
  <div className="max-w-5xl mx-auto flex flex-col  ">
  <div className="bg-[#1E2434] my-6 py-2 md:py-4 rounded-xl md:w-full w-auto flex md:flex-row gap-3 flex-col md:gap-4 justify-center items-start text-white  mx-3 md:mx-auto">
-    <div className="text-sm flex md:flex-row flex-col w-[60%] md:w-[40%] gap-2 md:items-center items-start md:justify-start justify-center  mx-auto md:m-0">
+    <div className="text-sm flex md:flex-row flex-col w-[50%] md:w-[40%] gap-2 md:items-center items-start md:justify-start justify-center  mx-auto md:m-0">
   <label className="text-white  text-md">Title</label>
     <input type="text" className="border-1 border-gray-600 w-full rounded-md focus:outline-none px-2 py-1"  name="title" value={task.title} onChange={handleAddTask}/>
     </div>
-    <div className="text-sm flex md:flex-row flex-col gap-2 w-[60%] md:w-[40%] items-start md:items-center md:justify-start justify-center mx-auto md:m-0" >
+    <div className="text-sm flex md:flex-row flex-col gap-2 w-[50%] md:w-[40%] items-start md:items-center md:justify-start justify-center mx-auto md:m-0" >
     <label className="text-white text-md">Description</label>
     <input type="text" className="border-1 border-gray-600  rounded-md w-full focus:outline-none px-2 py-1" name="description" value={task.description} onChange={handleAddTask}/>
     </div>

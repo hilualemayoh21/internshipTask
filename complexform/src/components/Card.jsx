@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import {
   Card,
   CardContent,
@@ -9,23 +9,16 @@ import {
   Box
 } from "@mui/material";
 
-function UserCard() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("submitedData")) || [];
-    setUsers(storedUsers);
-  }, []);
+function UserCard({users}) {
 
   return (
     <Box
       sx={{
-    width: "100%",
-    maxWidth: "1200px",
-    mx: "auto",
-    px: { xs:0, sm:"1.6%", md: 4 }, // same as your outer layout
-    py: { xs: 4, sm: 6 },
-
+        width: "100%",
+        maxWidth: "1200px",
+        mx: "auto",
+        px: { xs:0, sm:"1.6%", md: 4 },
+        py: { xs: 4, sm: 6 },
       }}
     >
       <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }}>
@@ -34,11 +27,10 @@ function UserCard() {
 
       <Box
         sx={{
-          display: "flex",
+          display: "flex", 
           flexWrap: "wrap",
           justifyContent: "center",
-          gap: 3, // Gap between cards
-         
+          gap: 3,
         }}
       >
         {users.length === 0 ? (
@@ -102,20 +94,27 @@ function UserCard() {
                     <Typography variant="body2" sx={{ mt: 1 }}>
                       <strong>Interested Topics:</strong>
                     </Typography>
-                    <Stack direction="row" spacing={1} flexWrap="wrap">
-                      {user.interestedTopics.map((topic, i) => (
-                        <Chip
-                          key={i}
-                          label={topic}
-                          color="primary"
-                          size="small"
-                          sx={{ mb: 1 }}
-                        />
-                      ))}
-                    </Stack>
-                  </>
-                )}
-              </CardContent>
+                    <Box
+  sx={{
+    display: "flex",
+    flexWrap: "wrap",
+    rowGap: 1,
+    columnGap: 1,
+    mt: 1,
+    alignItems: "center",
+  }}
+>
+  {user.interestedTopics.map((topic, i) => (
+    <Chip
+      key={i}
+      label={topic}
+      color="primary"
+      size="small"
+    />
+  ))}
+</Box> 
+</>)}
+         </CardContent>
             </Card>
           ))
         )}

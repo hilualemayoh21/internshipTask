@@ -28,7 +28,7 @@ function TaskCards({listOfTasks}) {
     const deleted = savedTasks[currentTab] ;
     setDeletedIndex(currentTab);
     setDeletedTask(deleted);
-    setShowToast(true);
+   
     
       if(confirmedDelete){
           const unDeletedTasks= savedTasks.filter((task , index)=>{
@@ -36,6 +36,7 @@ function TaskCards({listOfTasks}) {
             setSavedTasks(unDeletedTasks);
             startTimer();
        localStorage.setItem("tasks" , JSON.stringify(unDeletedTasks));
+        setShowToast(true);
       } }
       
     
@@ -83,14 +84,14 @@ function TaskCards({listOfTasks}) {
     ) : (
       <div key={index}>
         <div className="bg-[#1D2333] p-4 shadow-lg rounded-xl flex flex-col gap-[3em]">
-          <div className="flex flex-col">
-            <h3 className={`text-white text-lg ${task?.status === "completed" ? "line-through" : ""}`}>
+          <div className={`flex flex-col `}>
+            <h3 className={`text-gray-300 text-lg ${task?.status === "completed" ? "text-gray-700" : ""}`}>
               {task?.title}
             </h3>
-            <p className={`text-gray-600 text-md ${task?.status === "completed" ? "line-through" : ""}`}>
+            <p className={`text-gray-600 text-md ${task?.status === "completed" ? "text-gray-700" : ""}`}>
               {task?.description}
             </p>
-            <p className={`text-gray-300 ${task?.status === "completed" ? "line-through" : ""}`}>
+            <p className={`text-gray-300 ${task?.status === "completed" ? "text-gray-700" : ""}`}>
               {task?.status}
             </p>
           </div>

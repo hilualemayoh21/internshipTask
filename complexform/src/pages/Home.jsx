@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box';
@@ -12,11 +12,28 @@ import { ToastContainer } from "react-toastify";
 import UserCard from "../components/Card";
 import Support from '../components/Support.jsx';
 import Footer from "../components/Footer.jsx";
+import ImageWithPlaceholder from '../components/imagewithplaceholder/ImageWithPlaceholder.jsx';
 
 function Home() {
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
+  const [users, setUsers] = useState([]);
+
+  const handleClose = () => setOpen(false);
+
+
+   // Load saved data once
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("submitedData")) || [];
+    setUsers(storedUsers);
+  }, []);
+      // Add a new user
+  const handleUserSubmit = (newUser) => {
+  const updatedUsers = [...users, newUser];
+  localStorage.setItem("submitedData", JSON.stringify(updatedUsers));
+  setUsers(updatedUsers);
+  handleClose();
+};
 
   return (
     <Box
@@ -80,15 +97,11 @@ function Home() {
     mb: "28px",
     fontSize: { xs: "14px", sm: "16px", md: "18px" },
     lineHeight: { xs: "1.6", md: "1.75" },
-    
-   
-  }}
->
+    }}>
   Lorem Ipsum is simply dummy text of the printing and typesetting
   industry. Lorem Ipsum has been the industry's standard dummy.
 </Typography>
-
-                <Button
+           <Button
                   variant="contained"
                   sx={{
                     padding: "10px 24px",
@@ -103,15 +116,17 @@ function Home() {
               </Grid>
               <Grid item xs={12} md={6} sx={{ zIndex: 2, flex: 1 }}>
                 <Box sx={{ position: "relative" }}>
-                  <img
+                  <ImageWithPlaceholder
+                  blurhash="LSNTds?w.8Vs%ixvxvMx%gVsM_bc"
                     src={heroimage}
                     alt="hero section image"
+                    width= "100%"
+                    height= "100%"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                      marginInline:{xs:2 , md:0}
+                      objectFit: "cover", // or "contain" if you prefer full image with padding
+                      display: "block",
+                       mx: "auto",
+                       borderRadius: 2,
                     }}
                   />
                   <Box
@@ -141,7 +156,7 @@ function Home() {
           </Box>
         </Box>
 
-        <Stepperform open={open} handleClose={handleClose} />
+        <Stepperform open={open} handleClose={() => setOpen(false)} onFinalSubmit={handleUserSubmit}  />
         <ToastContainer position="top-right" autoClose={3000} />
 
         <Box>
@@ -150,7 +165,7 @@ function Home() {
         <Box width="100%">
           <HowWorks />
         </Box>
-        <UserCard />
+        <UserCard users={users}/>
         <Support />
       </Box>
       <Box >

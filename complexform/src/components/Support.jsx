@@ -1,14 +1,31 @@
-import React from 'react'
+import React,{useState}from 'react'
 import {Box , Typography , TextField , TextareaAutosize ,Button , useMediaQuery} from "@mui/material"
-import support from "../assets/support.png"
+import support from "../assets/support.jpg"
 import { useTheme } from '@mui/material/styles';
+import ImageWithPlaceholder from './imagewithplaceholder/ImageWithPlaceholder';
+
 function Support() {
     const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('md')); // md and up = overlap
   return (
     <Box sx={{mx:"auto" , width:"100%", maxWidth:"100vw" , position:"relative"  }}>
-  <Box sx={{width:"80%" ,height:{  xs:"250px",md:"420px"}, mx:"auto" ,display: "flex", justifyContent: "center" , my:5 , position:"relative"}}>
-    <img src={support} style={{  width:"100%",height:"100%" , objectFit: "fill" , borderRadius:10 ,  }}/>
+  <Box sx={{
+    width: { xs: "100%", md: "1000px" },
+    height: { xs: "250px", md: "420px" },
+    mx: "auto",
+    position: "relative",
+    backgroundColor: "#f5f5f5",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden", // Important for cover to work
+    borderRadius: 2
+  }}> 
+    <ImageWithPlaceholder blurhash ="LUL|[hD*IV-p?w%1xuW?~p%NRPIU" src={support} width={{ xs:"100%" ,md:"100%"}} height={{ xs: "250px", md: "420px" }} style={{
+    objectFit: "cover", // or "contain" if you prefer full image with padding
+    display: "block",
+    mx: "auto",
+    borderRadius: 2,}}/>
     {isLargeScreen && (<Box sx={{
             p: 4,
             bgcolor: 'white',

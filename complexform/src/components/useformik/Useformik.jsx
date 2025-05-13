@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const FORM_STORAGE_KEY = "professionalInfo";
 
+
 function useformikForm({ onSubmitSuccess }) {
   const DEFAULT_VALUES = {
     name: "",
@@ -71,9 +72,9 @@ function useformikForm({ onSubmitSuccess }) {
         .test("fileType", "Only JPG or PNG allowed", (value) =>
           value ? ["image/jpeg", "image/png"].includes(value.type) : false
         )
-        .test("fileSize", "Image must be less than 400KB", (value) =>
-          value ? value.size <= 400 * 1024 : false
-        ),
+       .test("fileSize", "Image must be less than 400KB", (value) =>
+    value ? value.size <= 400 * 1024 : false
+  ),
       skillLevel: Yup.string()
         .oneOf(["Beginner", "Intermediate", "Advanced"])
         .required("Skill level is required"),
@@ -139,7 +140,9 @@ function useformikForm({ onSubmitSuccess }) {
         resetForm({ values: DEFAULT_VALUES });
         localStorage.removeItem(FORM_STORAGE_KEY);
         toast.success("Form submitted successfully! 🎉");
-        if (onSubmitSuccess) onSubmitSuccess();
+       
+        if (onSubmitSuccess) onSubmitSuccess(values);
+        
       } catch (error) {
         toast.error("Submission failed. Please try again.");
         console.error("Submission error:", error);
