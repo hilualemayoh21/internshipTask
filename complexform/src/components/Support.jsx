@@ -19,7 +19,8 @@ function Support() {
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden", // Important for cover to work
-    borderRadius: 2
+    borderRadius: 2,
+    mb:6,mt:2
   }}> 
     <ImageWithPlaceholder blurhash ="LUL|[hD*IV-p?w%1xuW?~p%NRPIU" src={support} width={{ xs:"100%" ,md:"100%"}} height={{ xs: "250px", md: "420px" }} style={{
     objectFit: "cover", // or "contain" if you prefer full image with padding
@@ -40,17 +41,6 @@ function Support() {
             <SupportForm />
           </Box>)}
   </Box>
-    
-
-    {/* <Box sx={{p:4 , bgcolor:"white" ,opacity:0.7, position:"absolute" , top:{ xs:280 , sm:280 ,md:30 , } , right:{xs:"38px",md:"180px"} ,  px:{xs:"4px",  md:2} ,width:{ xs:"80%", md:"380px"}}}>
-     <Typography variant="h4">Need Support</Typography>
-     <Typography variant="subtitle2" sx={{mb:2}}>Contact professionals for guidance</Typography>
-     <TextField  fullWidth  value="" onChange="" placeholder='yourName' sx={{"& .MuiInputBase-root":{height:40},mb:"4px"}}/>
-     <TextField fullWidth   value="" onChange="" placeholder='Email Address' sx={{"& .MuiInputBase-root":{height:40},mb:"4px"}}/>
-     <TextField fullWidth  value="" onChange="" placeholder='phone' sx={{"& .MuiInputBase-root":{height:40} ,mb:"4px"}}/>
-     <TextareaAutosize minRows={3} placeholder='Your Query' style={{width:"98%" , marginBottom:"4px"}}/>
-     <Button variant="contained">Submit</Button>
-    </Box> */}
     {!isLargeScreen && (
         <Box sx={{
           p: 2,
